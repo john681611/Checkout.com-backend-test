@@ -70,21 +70,23 @@ public class PaymentRecordServiceTests: IDisposable
         var clientMock = new Mock<IMongoClient>();
         var collectionMock = new Mock<IMongoCollection<PaymentRecord>>();
         var dbMock = new Mock<IMongoDatabase>();
-        var cursorMock = new Mock<IFindFluent<PaymentRecord, PaymentRecord>>();
+        var cursorMock = new Mock<IAsyncCursor<PaymentRecord>>();
 
         clientMock.Setup(x => x.GetDatabase(It.IsAny<string>(), null)).Returns(dbMock.Object);
         dbMock.Setup(x => x.GetCollection<PaymentRecord>(It.IsAny<string>(), null)).Returns(collectionMock.Object);
 
-        collectionMock.Setup(x => x.Find(It.IsAny<FilterDefinition<PaymentRecord>>(), It.IsAny<FindOptions>())).Returns(cursorMock.Object);
-        cursorMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<CancellationToken>())).ReturnsAsync(new PaymentRecord{
+        collectionMock.Setup(x => x.FindAsync(It.IsAny<FilterDefinition<PaymentRecord>>(), It.IsAny<FindOptions<PaymentRecord, PaymentRecord>>(), It.IsAny<CancellationToken>())).ReturnsAsync(cursorMock.Object);
+        
+        cursorMock.Setup(x => x.MoveNextAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        cursorMock.Setup(x => x.Current).Returns(new List<PaymentRecord>{new PaymentRecord{
             MerchantID = "1234"
-        }); 
+        }}); 
 
         var service = new PaymentRecordService(clientMock.Object);
 
         var response = await service.GetAsync(Guid.NewGuid(), "ACME");
 
-        Assert.Null(response);
+        Assert.Equal("1234", response?.MerchantID);
     }
 
     private void SetupEnviromentVariables()
