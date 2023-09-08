@@ -11,7 +11,7 @@ public class PaymentDetailsController : ControllerBase
 {
 
     private readonly ILogger<PaymentDetailsController> _logger;
-    private readonly PaymentService _paymentService;
+    private readonly IPaymentService _paymentService;
 
     public PaymentDetailsController(ILogger<PaymentDetailsController> logger, PaymentService paymentService)
     {
@@ -24,6 +24,17 @@ public class PaymentDetailsController : ControllerBase
     { 
          if(!AuthService.Authenticate(Request.Headers))
             return Unauthorized();
-        return await _paymentService.GetPaymentRecord(request);
+        try
+        {
+            return await _paymentService.GetPaymentRecord(request);
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (Exception)
+        {
+            return StatusCode(500);
+        }
     }
 }

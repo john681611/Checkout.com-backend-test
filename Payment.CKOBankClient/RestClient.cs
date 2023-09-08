@@ -6,7 +6,7 @@ using Payment.CKOBankClient.Models;
 using Payment.Utils;
 
 namespace Payment.CKOBankClient;
-public class RestClient
+public class RestClient: IRestClient
 {
     private string APIKey { get; init; }
     private string BaseURL { get; init; }

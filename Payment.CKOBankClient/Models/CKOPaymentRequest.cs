@@ -11,7 +11,7 @@ public record CKOPaymentRequestCardDetails {
     public string Type { get; init; } = "";
     public string Number { get; init; } = "";
     public CKOPaymentRequestExpiry Expiry { get; init; } = new();
-    public int CCV { get; init; }
+    public string CCV { get; init; }
     public string Name { get; init; } = "";
 }
 

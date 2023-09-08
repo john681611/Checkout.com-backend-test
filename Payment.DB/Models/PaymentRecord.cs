@@ -9,7 +9,7 @@ public class PaymentRecord
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? mongoID { get; init; }
-    public string PaymentId { get; init; } = "";
+    public Guid PaymentId { get; init; }
     public string MerchantID { get; init; } = "";
     public double Ammount { get; init; }
     public string Currency {get; init;} = "";

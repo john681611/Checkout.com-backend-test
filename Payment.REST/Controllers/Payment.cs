@@ -11,7 +11,7 @@ public class PaymentController : ControllerBase
 {
 
     private readonly ILogger<PaymentController> _logger;
-    private readonly PaymentService _paymentService;
+    private readonly IPaymentService _paymentService;
 
     public PaymentController(ILogger<PaymentController> logger, PaymentService paymentService)
     {

@@ -4,10 +4,10 @@ using Payment.CKOBankClient;
 
 namespace Payment.Logic.Services;
 
-public class PaymentService
+public class PaymentService: IPaymentService
 {
-    private readonly PaymentRecordService _paymentRecordService;
-    private readonly RestClient _CKOBankClient;
+    private readonly IPaymentRecordService _paymentRecordService;
+    private readonly IRestClient _CKOBankClient;
 
     public PaymentService(PaymentRecordService paymentRecordService, RestClient cKOBankClient)
     {
@@ -21,8 +21,9 @@ public class PaymentService
         await _paymentRecordService.CreateAsync(ObjectCasts.PaymentRequestToRecord(paymentRequest, bankResponse));
         return new PaymentResponse
         {
-            PaymentID = "1234",
-            StatusCode = 200
+            PaymentID = bankResponse.PaymentID,
+            StatusCode = bankResponse.StatusCode,
+            StatusText = bankResponse.StatusText
         };
     }
     public async Task<PaymentDetailsResponse> GetPaymentRecord(PaymentDetailsRequest paymentDetailsRequest)

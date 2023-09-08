@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace Payment.DB.Services;
 
-public class PaymentRecordService
+public class PaymentRecordService: IPaymentRecordService
 {
     private readonly IMongoCollection<PaymentRecord> _PaymentRecordsCollection;
 
@@ -16,7 +16,7 @@ public class PaymentRecordService
         _PaymentRecordsCollection = mongoDatabase.GetCollection<PaymentRecord>("PaymentRecords");
     }
 
-    public async Task<PaymentRecord?> GetAsync(string paymentId, string merchantID) =>
+    public async Task<PaymentRecord?> GetAsync(Guid paymentId, string merchantID) =>
         await _PaymentRecordsCollection.Find(x => x.PaymentId == paymentId && x.MerchantID == merchantID).FirstOrDefaultAsync();
 
     public async Task CreateAsync(PaymentRecord paymentRecord) =>

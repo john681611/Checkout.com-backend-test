@@ -3,7 +3,7 @@ namespace Payment.Logic.Models;
 
 public class PaymentDetailsResponse
 {
-    public string PaymentId { get; set; } = "";
+    public Guid PaymentId { get; set; }
     public string MerchantID { get; set; } = "";
     public double Ammount { get; init; }
     public string Currency {get; init;} = "";
