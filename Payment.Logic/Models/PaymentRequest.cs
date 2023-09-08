@@ -34,7 +34,7 @@ public record PaymentRequestCardDetails {
 
     [Required]
     [RegularExpression(@"[0-9]{3}", ErrorMessage = "Invalid CVV.")]
-    public string CCV { get; init; }
+    public string CCV { get; init; } = "";
 
     [Required]
     public string Name { get; init; } = "";
@@ -45,8 +45,10 @@ public record PaymentRequestExpiry
 {
 
     [Required]
+    [Range(1,12)]
     public int Month {get; init;}
     
     [Required]
+    [Range(1970,2200)] //Maybe not our responability if the exipry out out :D Bank should Reject
     public int Year {get; init;}
 }

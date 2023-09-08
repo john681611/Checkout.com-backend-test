@@ -38,7 +38,7 @@ public static class ObjectCasts
             Currency = paymentRequest.Currency,
             Referance = paymentRequest.Referance,
             CardType = paymentRequest.CardDetails.Type,
-            CardNumberFinalFour = paymentRequest.CardDetails.Number.Substring(paymentRequest.CardDetails.Number.Length - 4),
+            CardNumber = new string('X', paymentRequest.CardDetails.Number.Length - 4) + paymentRequest.CardDetails.Number.Substring(paymentRequest.CardDetails.Number.Length - 4),
             CardName = paymentRequest.CardDetails.Name,
             ResultStatus = bankResults.StatusCode,
             ResultText = bankResults.StatusText
@@ -54,7 +54,7 @@ public static class ObjectCasts
             Ammount = paymentRecord.Ammount,
             Currency = paymentRecord.Currency,
             Referance = paymentRecord.Referance,
-            CardNumberFinalFour = paymentRecord.CardNumberFinalFour,
+            CardNumber = paymentRecord.CardNumber,
             CardName = paymentRecord.CardName,
             CardType = paymentRecord.CardType,
             ResultStatus = paymentRecord.ResultStatus,

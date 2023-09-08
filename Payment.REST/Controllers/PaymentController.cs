@@ -20,12 +20,18 @@ public class PaymentController : ControllerBase
     }
 
     [HttpPost(Name = "payments")]
-    public async Task<ActionResult<PaymentResponse>> Payments(PaymentRequest request)
+    public async Task<ActionResult<PaymentResponse>> MakePayment(PaymentRequest request)
     {
         if(!AuthService.Authenticate(Request.Headers))
             return Unauthorized();
-
-        var paymentResponse = await _paymentService.MakePayment(request);
-        return paymentResponse;
+        try
+        {
+            return await _paymentService.MakePayment(request);;
+        }
+        catch (System.Exception e)
+        {
+            _logger.LogError(e, e.Message);
+            return StatusCode(500);
+        }
     }
 }

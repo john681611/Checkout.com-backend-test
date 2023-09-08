@@ -21,8 +21,8 @@ public class PaymentDetailsController : ControllerBase
 
     [HttpPost(Name = "paymentDetails")]
     public async Task<ActionResult<PaymentDetailsResponse>> GetPaymentDetails(PaymentDetailsRequest request)
-    { 
-         if(!AuthService.Authenticate(Request.Headers))
+    {
+        if (!AuthService.Authenticate(Request.Headers))
             return Unauthorized();
         try
         {
@@ -32,8 +32,9 @@ public class PaymentDetailsController : ControllerBase
         {
             return NotFound();
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            _logger.LogError(e, e.Message);
             return StatusCode(500);
         }
     }
