@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.MockBank.API", "MockBank\CKO.MockBank.API\CKO.MockBank.API.csproj", "{016A0807-D874-47CE-9873-216EB5FC2354}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.MockBank.API", "CKO.MockBank.API\CKO.MockBank.API.csproj", "{016A0807-D874-47CE-9873-216EB5FC2354}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.CKOBankClient", "Payment.CKOBankClient\Payment.CKOBankClient.csproj", "{125F7A24-CE78-40E3-BD2D-03E6609EE926}"
 EndProject
