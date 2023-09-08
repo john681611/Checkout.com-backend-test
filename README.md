@@ -22,3 +22,4 @@ A payment API using a MongoDB as storage and connects to a mock CKO Bank API
  - Service Interfaces
  - Validation of Requests
  - TESTS
+ - DOCKER CHECK

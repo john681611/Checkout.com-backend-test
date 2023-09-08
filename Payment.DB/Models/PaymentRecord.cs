@@ -8,8 +8,9 @@ public class PaymentRecord
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? PaymentId { get; set; }
-    public string MerchantID { get; set; } = "";
+    public string? mongoID { get; init; }
+    public string PaymentId { get; init; } = "";
+    public string MerchantID { get; init; } = "";
     public double Ammount { get; init; }
     public string Currency {get; init;} = "";
     public string Referance { get; init;} = "";
@@ -17,5 +18,6 @@ public class PaymentRecord
     public string CardName { get; init; } = "";
     public string CardType { get; init; } = "";
     public int ResultStatus { get; init; }
+    public string ResultText { get; init; } = "";
 }
 

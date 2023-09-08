@@ -1,6 +1,6 @@
 ﻿namespace Payment.Utils
 {
-    public static class Utils
+    public static class EnvUtils
     {
         public static string GetRequiredEnvironmentVariable(string key)
         {

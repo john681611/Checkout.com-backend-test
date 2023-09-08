@@ -2,7 +2,7 @@ using Payment.Utils;
 
 namespace Payment.Utils.Test
 {
-    public class UtilsTests
+    public class EnvUtilsTests
     {
         [Fact]
         public void GetRequiredEnvironmentVariable_NoEnvironmentVariable_ThrowsArgumentNullException()

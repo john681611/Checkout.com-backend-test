@@ -9,9 +9,9 @@ public class PaymentRecordService
 
     public PaymentRecordService()
     {
-        var mongoClient = new MongoClient(Utils.Utils.GetRequiredEnvironmentVariable("MONGO_CONNECTION"));
+        var mongoClient = new MongoClient(Utils.EnvUtils.GetRequiredEnvironmentVariable("MONGO_CONNECTION"));
 
-        var mongoDatabase = mongoClient.GetDatabase(Utils.Utils.GetRequiredEnvironmentVariable("MONGO_DB"));
+        var mongoDatabase = mongoClient.GetDatabase(Utils.EnvUtils.GetRequiredEnvironmentVariable("MONGO_DB"));
 
         _PaymentRecordsCollection = mongoDatabase.GetCollection<PaymentRecord>("PaymentRecords");
     }
