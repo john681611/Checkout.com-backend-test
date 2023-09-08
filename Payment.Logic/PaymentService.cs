@@ -16,7 +16,6 @@ public class PaymentService: IPaymentService
     }
     public async Task<PaymentResponse> MakePayment(PaymentRequest paymentRequest)
     {
-        // TODO: VALIDATION
         var bankResponse = await _CKOBankClient.MakePayment(ObjectCasts.PaymentRequestToBankRequest(paymentRequest));
         await _paymentRecordService.CreateAsync(ObjectCasts.PaymentRequestToRecord(paymentRequest, bankResponse));
         return new PaymentResponse
@@ -28,7 +27,6 @@ public class PaymentService: IPaymentService
     }
     public async Task<PaymentDetailsResponse> GetPaymentRecord(PaymentDetailsRequest paymentDetailsRequest)
     {
-        // TODO: VALIDATION
         var response = await _paymentRecordService.GetAsync(paymentDetailsRequest.PaymentID, paymentDetailsRequest.MerchantID);
         if (response == null)
             throw new KeyNotFoundException();
