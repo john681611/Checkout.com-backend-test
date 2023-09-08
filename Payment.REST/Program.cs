@@ -38,9 +38,9 @@ builder.Services.AddSwaggerGen(c => {
         });
 });
 
-builder.Services.AddSingleton<Payment.CKOBankClient.RestClient>();
-builder.Services.AddSingleton<Payment.DB.Services.PaymentRecordService>();
-builder.Services.AddSingleton<Payment.Logic.Services.PaymentService>();
+builder.Services.AddSingleton<Payment.CKOBankClient.IRestClient, Payment.CKOBankClient.RestClient>();
+builder.Services.AddSingleton<Payment.DB.Services.IPaymentRecordService, Payment.DB.Services.PaymentRecordService>();
+builder.Services.AddSingleton<Payment.Logic.Services.IPaymentService, Payment.Logic.Services.PaymentService>();
 
 var app = builder.Build();
 

@@ -19,8 +19,7 @@ public class Payment : ControllerBase
     [HttpPost(Name = "payment")]
     public ActionResult<CKOPaymentResponse> Post(CKOPaymentRequest request)
     {
-        Guid myuuid = Guid.NewGuid();
-        string PaymentId = myuuid.ToString();
+        Guid PaymentId = Guid.NewGuid();
         if(!AuthService.Authenticate(Request.Headers))
             return Unauthorized();
         if (request.Referance == "NO MONEY")

@@ -13,7 +13,7 @@ public class PaymentDetailsController : ControllerBase
     private readonly ILogger<PaymentDetailsController> _logger;
     private readonly IPaymentService _paymentService;
 
-    public PaymentDetailsController(ILogger<PaymentDetailsController> logger, PaymentService paymentService)
+    public PaymentDetailsController(ILogger<PaymentDetailsController> logger, IPaymentService paymentService)
     {
         _logger = logger;
         _paymentService = paymentService;

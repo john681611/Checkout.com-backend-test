@@ -9,7 +9,7 @@ public class PaymentService: IPaymentService
     private readonly IPaymentRecordService _paymentRecordService;
     private readonly IRestClient _CKOBankClient;
 
-    public PaymentService(PaymentRecordService paymentRecordService, RestClient cKOBankClient)
+    public PaymentService(IPaymentRecordService paymentRecordService, IRestClient cKOBankClient)
     {
         _paymentRecordService = paymentRecordService;
         _CKOBankClient = cKOBankClient;
