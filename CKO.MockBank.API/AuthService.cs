@@ -7,7 +7,6 @@ public static class AuthService {
     public static bool Authenticate(IHeaderDictionary headers)
     {
        if(!headers.TryGetValue("Authorization", out var headerValue)) return false;
-       Console.WriteLine(headerValue);
        return headerValue == "Bearer 4321";
     }
 }
